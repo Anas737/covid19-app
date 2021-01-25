@@ -1,29 +1,29 @@
 export interface Global {
-  newConfirmed: number;
-  totalConfirmed: number;
-  newDeaths: number;
-  totalDeaths: number;
-  newRecovered: number;
-  totalRecovered: number;
+  NewConfirmed: number;
+  TotalConfirmed: number;
+  NewDeaths: number;
+  TotalDeaths: number;
+  NewRecovered: number;
+  TotalRecovered: number;
 }
 
 export interface Country {
-  country: string;
-  countryCode: string;
-  slug: string;
-  newConfirmed: number;
-  totalConfirmed: number;
-  newDeaths: number;
-  totalDeaths: number;
-  newRecovered: number;
-  totalRecovered: number;
-  date: Date;
+  Country: string;
+  CountryCode: string;
+  Slug: string;
+  NewConfirmed: number;
+  TotalConfirmed: number;
+  NewDeaths: number;
+  TotalDeaths: number;
+  NewRecovered: number;
+  TotalRecovered: number;
+  Date: Date;
   Premium: any;
 }
 
 export interface Summary {
-  id: string;
-  message: string;
-  global: Global;
-  countries: Country[];
+  ID: string;
+  Message: string;
+  Global: Global;
+  Countries: Country[];
 }

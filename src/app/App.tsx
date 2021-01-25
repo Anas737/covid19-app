@@ -18,7 +18,7 @@ const App = () => {
   const [countryData, setCountryData] = React.useState({} as Country);
 
   const { fetching, summary } = React.useContext(DataContext);
-  const { global, countries } = summary;
+  const { Global, Countries } = summary;
 
   const displayDashboard = React.useCallback(() => {
     setDisplayedSecreen(DASHBOARD);
@@ -28,39 +28,44 @@ const App = () => {
     setDisplayedSecreen(SEARCH);
   }, []);
 
-  const displayCountryData = React.useCallback((countrySlug: string) => {
-    const countryData = countries.find(
-      (_country) => _country.slug === countrySlug
-    );
+  const displayCountryData = React.useCallback(
+    (countrySlug: string) => {
+      const countryData = Countries.find(
+        (_country) => _country.Slug === countrySlug
+      );
 
-    setCountryData(countryData as Country);
-    setDisplayedSecreen(COUNTRY_DATA);
-  }, []);
+      setCountryData(countryData as Country);
+      setDisplayedSecreen(COUNTRY_DATA);
+    },
+    [Countries]
+  );
 
   return (
     <div className="App">
-      <Header />
+      <Header
+        displayedScreen={displayedScreen}
+        displayDashboard={displayDashboard}
+        countryData={countryData}
+      />
 
-      {/* Dashbaord */}
+      {/* dashbaord */}
       {displayedScreen === DASHBOARD && (
-        <Dashboard global={global} displaySearch={displaySearch} />
+        <Dashboard global={Global} displaySearch={displaySearch} />
       )}
 
-      {/* Search */}
+      {/* search */}
       {displayedScreen === SEARCH && (
         <Search
-          countries={countries}
+          countries={Countries}
           displayDashboard={displayDashboard}
           displayCountryData={displayCountryData}
         />
       )}
 
-      {/* Country Data */}
-      {displayedScreen === COUNTRY_DATA && (
-        <CountryData data={countryData} displayDashboard={displayDashboard} />
-      )}
+      {/* country data */}
+      {displayedScreen === COUNTRY_DATA && <CountryData data={countryData} />}
 
-      {/* Fetching */}
+      {/* fetching */}
       {fetching && <div>Fetching...</div>}
     </div>
   );
