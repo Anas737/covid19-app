@@ -18,9 +18,12 @@ export interface Country {
   newRecovered: number;
   totalRecovered: number;
   date: Date;
+  Premium: any;
 }
 
 export interface Summary {
+  id: string;
+  message: string;
   global: Global;
   countries: Country[];
 }

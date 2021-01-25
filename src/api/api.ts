@@ -1,6 +1,7 @@
 import { Summary } from "../types";
 
-const API_URL = "https://covid19api.com/";
+const API_URL = "https://api.covid19api.com";
+
 const options = {
   method: "GET",
   headers: {
@@ -34,16 +35,15 @@ export default {
   },
 
   get(route: string): Promise<any> {
-    return fetch(`${API_URL}\\${route}`, options)
-      .then((response) => {
-        console.log(response);
-
-        return response;
+    return fetch(`${API_URL}/${route}`, options)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
       })
       .catch((error) => {
         console.log(error);
 
-        return error;
+        return null;
       });
   },
 };
