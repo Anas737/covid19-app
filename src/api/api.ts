@@ -1,22 +1,25 @@
-export default class api {
-  private readonly API_URL = "https://covid19api.com/";
-  private readonly options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
+import { Summary } from "../types";
 
-  // @return get global totals and daily counts
-  getSummary(): Promise<any> {
+const API_URL = "https://covid19api.com/";
+const options = {
+  method: "GET",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+};
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+  // @return global totals and daily counts
+  getSummary(): Promise<Summary> {
     return this.get("summary");
-  }
+  },
 
   // @return countries
   getCountries(): Promise<any> {
     return this.get("countries");
-  }
+  },
 
   // @param slug: country slug from the summary
   // @param from: start date
@@ -28,10 +31,10 @@ export default class api {
         to.toDateString
       }`
     );
-  }
+  },
 
-  private get(route: string): Promise<any> {
-    return fetch(`${this.API_URL}\\${route}`, this.options)
+  get(route: string): Promise<any> {
+    return fetch(`${API_URL}\\${route}`, options)
       .then((response) => {
         console.log(response);
 
@@ -42,5 +45,5 @@ export default class api {
 
         return error;
       });
-  }
-}
+  },
+};
