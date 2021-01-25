@@ -14,7 +14,7 @@ const SEARCH = "SEARCH";
 const COUNTRY_DATA = "COUNTRY_DATA";
 
 const App = () => {
-  const [displayedScreen, setDisplayedSecreen] = React.useState(DASHBOARD);
+  const [displayedScreen, setDisplayedSecreen] = React.useState(SEARCH);
   const [countryData, setCountryData] = React.useState({} as Country);
 
   const { fetching, summary } = React.useContext(DataContext);
@@ -49,24 +49,22 @@ const App = () => {
       />
 
       {/* dashbaord */}
-      {displayedScreen === DASHBOARD && (
+      {!fetching && displayedScreen === DASHBOARD && (
         <Dashboard global={Global} displaySearch={displaySearch} />
       )}
 
       {/* search */}
-      {displayedScreen === SEARCH && (
-        <Search
-          countries={Countries}
-          displayDashboard={displayDashboard}
-          displayCountryData={displayCountryData}
-        />
+      {!fetching && displayedScreen === SEARCH && (
+        <Search countries={Countries} displayCountryData={displayCountryData} />
       )}
 
       {/* country data */}
-      {displayedScreen === COUNTRY_DATA && <CountryData data={countryData} />}
+      {!fetching && displayedScreen === COUNTRY_DATA && (
+        <CountryData data={countryData} />
+      )}
 
       {/* fetching */}
-      {fetching && <div>Fetching...</div>}
+      {fetching && <div className="fetching container">Fetching...</div>}
     </div>
   );
 };

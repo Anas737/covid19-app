@@ -22,9 +22,7 @@ const CountryData: React.FC<CountryDataProps> = ({ data }) => {
             <span>Daily new cases</span> for 30 days
           </h2>
 
-          <div id="country-data-chart" className="country-data__chart">
-            Chart
-          </div>
+          <div id="country-data-chart" className="country-data__chart"></div>
 
           {/* tatal cases */}
           <Card

@@ -46,15 +46,16 @@ const Dashboard: React.FC<DashboardProps> = ({ global, displaySearch }) => {
             total={global.TotalRecovered}
             _new={global.NewRecovered}
           />
-        </div>
 
-        <button
-          type="button"
-          className="search-by-country-btn"
-          onClick={displaySearch}
-        >
-          Search by <span>country</span>
-        </button>
+          {/* search by country */}
+          <button
+            type="button"
+            className="search-by-country-btn"
+            onClick={displaySearch}
+          >
+            Search by <span>country</span>
+          </button>
+        </div>
       </div>
     </div>
   );

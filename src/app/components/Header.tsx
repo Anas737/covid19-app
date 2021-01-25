@@ -40,7 +40,6 @@ const Header: React.FC<HeaderProps> = ({
     <header className="header">
       <div className="container">
         <div className="header__content">
-          <h1 className="header__title">{title}</h1>
           {isBackDisplayed && (
             <button
               className="back-btn"
@@ -50,6 +49,7 @@ const Header: React.FC<HeaderProps> = ({
               <i className="fas fa-arrow-left"></i>
             </button>
           )}
+          <h1 className="header__title">{title}</h1>
         </div>
       </div>
     </header>

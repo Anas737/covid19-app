@@ -1,0 +1,200 @@
+/* header */
+.header {
+  background-color: var(--dark-blue);
+  position: relative;
+}
+
+.header__content {
+  height: 5vh;
+
+  color: var(--white);
+  font-size: var(--lg-fs);
+  font-weight: bold;
+  text-transform: capitalize;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 1em 0;
+}
+
+.header__title {
+  text-align: center;
+  font-size: var(--lg-fs);
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header .back-btn {
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+
+  outline: 0;
+  border: 0;
+
+  position: relative;
+  z-index: 2;
+
+  cursor: pointer;
+}
+
+/* /header */
+
+/* dashboard */
+.dashboard__content {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard__title {
+  margin-bottom: 0.5em;
+}
+
+.search-by-country-btn {
+  display: block;
+  width: 90%;
+
+  background-color: var(--blue);
+  color: var(--white);
+
+  outline: 0;
+  border: transparent;
+
+  align-self: center;
+  padding: 0.7em 0;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+/* /dashboard */
+
+/* search */
+.search__header {
+  background-color: var(--light-blue);
+  padding: 1em 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search__input-group {
+  width: 80vw;
+  background-color: var(--white);
+  padding: 0 0.5em;
+
+  outline: 0;
+  border-radius: 6px;
+  border: 1px solid #d2d7de;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+
+  overflow: hidden;
+  cursor: text;
+}
+
+.search__icon {
+  font-size: 1.1rem;
+  color: var(--grey);
+  margin-right: 0.5em;
+}
+
+.search__input {
+  display: block;
+  height: 5vh;
+
+  border: transparent;
+  outline: 0;
+}
+
+.search__result {
+}
+
+.result__item {
+  padding: 1em 0;
+
+  font-weight: bold;
+  border-bottom: 1px solid var(--light-blue);
+
+  position: relative;
+  cursor: pointer;
+}
+
+.result__item::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+  top: 45%;
+
+  border-top: 2px solid var(--grey);
+  border-right: 2px solid var(--grey);
+
+  width: 0.7em;
+  height: 0.7em;
+
+  transform: rotateZ(45deg);
+}
+
+/* /search */
+
+/* country data */
+.country-data__title {
+  margin-bottom: 0.5em;
+}
+/* /country data */
+
+/* card */
+.card {
+  border: 1px solid var(--light-grey);
+  padding: 0.5em 1em;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  margin-bottom: 1em;
+}
+
+.card .column__header {
+  text-transform: capitalize;
+  margin-bottom: 0.1em;
+}
+
+.card .column__value {
+  font-size: var(--md-fs);
+  font-weight: bold;
+}
+
+.card.card--deaths .column__value {
+  color: var(--red);
+}
+
+.card.card--recovered .column__value {
+  color: var(--green);
+}
+
+/* /card */
+
+.dashboard__content,
+.country-data__content {
+  padding-top: 1rem;
+}
+
+.dashboard__title > span,
+.country-data__title > span,
+.search-by-country-btn > span {
+  text-transform: capitalize;
+}
+
+.fetching {
+  margin-top: 1rem;
+}
