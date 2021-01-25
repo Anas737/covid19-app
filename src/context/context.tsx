@@ -1,13 +1,10 @@
 import React from "react";
 import api from "../api";
 import { Summary } from "../types";
-import { ActionTypes, fetching, setSummary } from "./actions";
-import { reducer, initialState } from "./reducer";
-import { StateType } from "./types";
 
 interface ContextProps {
-  state: StateType;
-  dispatch: React.Dispatch<ActionTypes>;
+  fetching: boolean;
+  summary: Summary;
 }
 
 interface ProviderProps {
@@ -18,21 +15,21 @@ const Context = React.createContext({} as ContextProps);
 const Provider = Context.Provider;
 
 const DataProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [fetching, setFetching] = React.useState(true);
+  const [summary, setSummary] = React.useState({} as Summary);
 
   React.useEffect(() => {
     const getSummary = async () => {
-      dispatch(fetching());
-
       const summary: Summary = await api.getSummary();
 
-      dispatch(setSummary(summary));
+      setSummary(summary);
+      setFetching(false);
     };
 
     getSummary();
   }, []);
 
-  return <Provider value={{ state, dispatch }}>{children}</Provider>;
+  return <Provider value={{ fetching, summary }}>{children}</Provider>;
 };
 
 export { Context as DataContext, DataProvider };
