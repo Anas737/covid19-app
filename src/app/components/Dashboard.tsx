@@ -11,7 +11,22 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ global, displaySearch }) => {
   React.useEffect(() => {
-    drawHistogram("#dashboard-chart", 300, 300);
+    const data = [
+      {
+        status: "New Cases",
+        value: global.NewConfirmed,
+      },
+      {
+        status: "New Deaths",
+        value: global.NewDeaths,
+      },
+      {
+        status: "New Recovered",
+        value: global.NewRecovered,
+      },
+    ];
+
+    drawHistogram("#dashboard-chart", 400, 400, data, "test");
   });
 
   if (!global) return <div>No data</div>;

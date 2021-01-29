@@ -56,6 +56,11 @@
   margin-bottom: 0.5em;
 }
 
+.dashboard__chart {
+  display: flex;
+  justify-content: center;
+}
+
 .search-by-country-btn {
   display: block;
   width: 90%;
@@ -194,6 +199,7 @@
 .dashboard__content,
 .country-data__content {
   padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .dashboard__title > span,
