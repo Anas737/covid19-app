@@ -26,12 +26,8 @@ export default {
   // @param from: start date
   // @param to: end date
   // @return a specific country data
-  getCountryData(slug: string, from: Date, to: Date): Promise<any> {
-    return this.get(
-      `country/${slug}/status/confirmed?from=${from.toDateString()}&to=${
-        to.toDateString
-      }`
-    );
+  getCountryData(slug: string, from: string, to: string): Promise<any> {
+    return this.get(`country/${slug}?from=${from}&to=${to}`);
   },
 
   get(route: string): Promise<any> {

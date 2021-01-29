@@ -18,7 +18,6 @@ const App = () => {
   const [countryData, setCountryData] = React.useState({} as Country);
 
   const { fetching, summary } = React.useContext(DataContext);
-  const { Global, Countries } = summary;
 
   const displayDashboard = React.useCallback(() => {
     setDisplayedSecreen(DASHBOARD);
@@ -30,14 +29,14 @@ const App = () => {
 
   const displayCountryData = React.useCallback(
     (countrySlug: string) => {
-      const countryData = Countries.find(
+      const countryData = summary.Countries.find(
         (_country) => _country.Slug === countrySlug
       );
 
       setCountryData(countryData as Country);
       setDisplayedSecreen(COUNTRY_DATA);
     },
-    [Countries]
+    [summary]
   );
 
   return (
@@ -50,12 +49,15 @@ const App = () => {
 
       {/* dashbaord */}
       {!fetching && displayedScreen === DASHBOARD && (
-        <Dashboard global={Global} displaySearch={displaySearch} />
+        <Dashboard global={summary.Global} displaySearch={displaySearch} />
       )}
 
       {/* search */}
       {!fetching && displayedScreen === SEARCH && (
-        <Search countries={Countries} displayCountryData={displayCountryData} />
+        <Search
+          countries={summary.Countries}
+          displayCountryData={displayCountryData}
+        />
       )}
 
       {/* country data */}

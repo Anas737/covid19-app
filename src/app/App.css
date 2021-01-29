@@ -151,6 +151,13 @@
 .country-data__title {
   margin-bottom: 0.5em;
 }
+
+.country-data__charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  column-gap: 4em;
+}
+
 /* /country data */
 
 /* card */

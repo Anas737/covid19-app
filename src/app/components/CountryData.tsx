@@ -1,5 +1,6 @@
 import React from "react";
-import { Country } from "../../types";
+import api from "../../api";
+import { Country, CountryDetail } from "../../types";
 import { drawLine } from "../utils";
 import Card from "./Card";
 
@@ -8,10 +9,68 @@ interface CountryDataProps {
 }
 
 const CountryData: React.FC<CountryDataProps> = ({ data }) => {
-  const [chartData, setChartData] = React.useState({});
-
   React.useEffect(() => {
-    drawLine("#country-data-chart", 300, 300);
+    (async () => {
+      // Get data for the last 7 days for the current country
+      const startDate = new Date(data.Date);
+      const endDate = new Date();
+      endDate.setDate(startDate.getDate() - 7);
+
+      const to = startDate.toISOString().substr(0, 11);
+      const from = endDate.toISOString().substr(0, 11);
+
+      const dataDetail: CountryDetail[] = await api.getCountryData(
+        data.Slug,
+        from,
+        to
+      );
+
+      const chartSize = 400;
+
+      // confirmed
+      const confirmed = dataDetail.map((d) => {
+        return {
+          date: d.Date,
+          value: d.Confirmed,
+        };
+      });
+
+      drawLine(
+        "#confirmed-chart",
+        chartSize,
+        chartSize,
+        confirmed,
+        "blue",
+        "Confirmed"
+      );
+
+      // deaths
+      const deaths = dataDetail.map((d) => {
+        return {
+          date: d.Date,
+          value: d.Deaths,
+        };
+      });
+
+      drawLine("#deaths-chart", chartSize, chartSize, deaths, "red", "Deaths");
+
+      // recovered
+      const recovered = dataDetail.map((d) => {
+        return {
+          date: d.Date,
+          value: d.Recovered,
+        };
+      });
+
+      drawLine(
+        "#recovered-chart",
+        chartSize,
+        chartSize,
+        recovered,
+        "green",
+        "Recovered"
+      );
+    })();
   });
 
   return (
@@ -19,12 +78,15 @@ const CountryData: React.FC<CountryDataProps> = ({ data }) => {
       <div className="container">
         <div className="country-data__content">
           <h2 className="country-data__title">
-            <span>Daily new cases</span> for 30 days
+            <span>Last 7 days</span> cases
           </h2>
 
-          <div id="country-data-chart" className="country-data__chart"></div>
+          <div className="country-data__charts">
+            <div id="confirmed-chart"></div>
+            <div id="deaths-chart"></div>
+            <div id="recovered-chart"></div>
+          </div>
 
-          {/* tatal cases */}
           <Card
             type="cases"
             total={data.TotalConfirmed}

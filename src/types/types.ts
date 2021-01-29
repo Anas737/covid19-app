@@ -17,7 +17,7 @@ export interface Country {
   TotalDeaths: number;
   NewRecovered: number;
   TotalRecovered: number;
-  Date: Date;
+  Date: string;
   Premium: any;
 }
 
@@ -26,4 +26,20 @@ export interface Summary {
   Message: string;
   Global: Global;
   Countries: Country[];
+}
+
+export interface CountryDetail {
+  Active: number;
+  City: string;
+  CityCode: string;
+  Confirmed: number;
+  Country: string;
+  CountryCode: string;
+  Date: string;
+  Deaths: number;
+  ID: string;
+  Lat: string;
+  Lon: string;
+  Province: string;
+  Recovered: number;
 }

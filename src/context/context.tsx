@@ -22,6 +22,7 @@ const DataProvider: React.FC<ProviderProps> = ({ children }) => {
     const getSummary = async () => {
       const summary: Summary = await api.getSummary();
 
+      console.log(summary);
       setSummary(summary);
       setFetching(false);
     };
