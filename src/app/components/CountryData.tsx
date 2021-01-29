@@ -40,7 +40,7 @@ const CountryData: React.FC<CountryDataProps> = ({ data }) => {
         chartSize,
         chartSize,
         confirmed,
-        "blue",
+        "#4299e0",
         "Confirmed"
       );
 
@@ -52,7 +52,14 @@ const CountryData: React.FC<CountryDataProps> = ({ data }) => {
         };
       });
 
-      drawLine("#deaths-chart", chartSize, chartSize, deaths, "red", "Deaths");
+      drawLine(
+        "#deaths-chart",
+        chartSize,
+        chartSize,
+        deaths,
+        "#da5356",
+        "Deaths"
+      );
 
       // recovered
       const recovered = dataDetail.map((d) => {
@@ -67,7 +74,7 @@ const CountryData: React.FC<CountryDataProps> = ({ data }) => {
         chartSize,
         chartSize,
         recovered,
-        "green",
+        "#7cc350",
         "Recovered"
       );
     })();

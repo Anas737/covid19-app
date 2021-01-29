@@ -59,22 +59,13 @@ export const drawHistogram = (elemId, width, height, data, text) => {
         case "new cases":
           return "black";
         case "new deaths":
-          return "red";
+          return "#da5356";
         case "new recovered":
-          return "green";
+          return "#7cc350";
         default:
           return "black";
       }
     });
-
-  // chart
-  //   .append("text")
-  //   .attr("x", contentWidth / 2)
-  //   .attr("y", padding / 2)
-  //   .attr("text-anchor", "middle")
-  //   .style("font-size", "12px")
-  //   .style("font-weight", "bold")
-  //   .text(text);
 };
 
 export const drawLine = (elemId, width, height, data, color, text) => {
